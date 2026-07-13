@@ -1,0 +1,38 @@
+/* ==========================================================================
+   DEVELOPMENT PROJECTS PAGE SPECIFIC STYLING (SMART GRAM PANCHAYAT)
+   ========================================================================== */
+
+/* Project Card layout custom progress rules */
+.project-card {
+  height: 100%;
+}
+.project-meta {
+  border-top: 1px solid var(--border-glass);
+  padding-top: 10px;
+}
+.project-meta div {
+  margin-bottom: 5px;
+}
+
+.progress-custom {
+  height: 18px;
+  border-radius: 9px;
+  background: rgba(var(--primary-rgb), 0.08);
+}
+.progress-custom .progress-bar {
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9px;
+}
+
+.project-item-wrapper {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Badge highlights */
+.bg-success-soft {
+  background: rgba(25, 135, 84, 0.1);
+}
+.bg-warning-soft {
+  background: rgba(255, 193, 7, 0.15);
+}

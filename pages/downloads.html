@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Downloads Portal - Smart Gram Panchayat Portal</title>
+  <meta name="description" content="Download official Gram Panchayat registration forms, land record blank templates, certificate application PDFs, and governance circulars.">
+  
+  <!-- CSS Stylesheets -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/downloads.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader" class="loader-wrapper">
+    <div class="loader-spinner"></div>
+    <h5 class="text-primary fw-semibold">Loading Document Store...</h5>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-custom py-3">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="fas fa-landmark text-primary"></i>
+        <span>Smart Panchayat</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fas fa-bars text-primary"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">About</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="about.html">Panchayat Details</a></li>
+              <li><a class="dropdown-item" href="members.html">Panchayat Members</a></li>
+              <li><a class="dropdown-item" href="information.html">Village Info & Stats</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="schemes.html">Schemes</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="agriculture.html">Agriculture & Mandi</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link active" href="downloads.html">Downloads</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          
+          <li class="nav-item ms-lg-3 d-flex align-items-center mt-3 mt-lg-0">
+            <button id="search-trigger" class="search-trigger-btn" title="Search Site">
+              <i class="fas fa-search"></i>
+            </button>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Global Search Overlay -->
+  <div id="search-overlay" class="search-overlay">
+    <div class="search-container">
+      <button id="search-close" class="search-close">&times;</button>
+      <h5 class="mb-3 text-primary fw-bold"><i class="fas fa-search me-2"></i>Search Portal</h5>
+      <input type="text" id="global-search-input" class="form-control form-control-lg border-2 border-primary mb-3 bg-transparent text-primary" placeholder="Type to search (e.g. Kisan, Sarpanch, Forms)..." autocomplete="off">
+      <div id="search-results" class="list-group">
+        <p class="text-muted text-center">Type at least 2 characters to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Hero Header -->
+  <section class="page-hero">
+    <div class="container" data-aos="zoom-out">
+      <h1>Official Forms & Downloads</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Downloads Portal</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Downloads Directory Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="row align-items-center mb-5 g-4" data-aos="fade-up">
+        <!-- Search bar -->
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text bg-transparent border-primary text-primary border-2 border-end-0"><i class="fas fa-search"></i></span>
+            <input type="text" id="download-search-input" class="form-control border-primary border-2 border-start-0 bg-transparent text-primary" placeholder="Search forms or files by title keywords...">
+          </div>
+        </div>
+        <!-- Filters buttons -->
+        <div class="col-md-7">
+          <div class="d-flex justify-content-md-end flex-wrap gap-2">
+            <button class="btn btn-primary rounded-pill px-3 active download-filter" data-filter="all">All Forms</button>
+            <button class="btn btn-outline-primary rounded-pill px-3 download-filter" data-filter="certificates">Certificates</button>
+            <button class="btn btn-outline-primary rounded-pill px-3 download-filter" data-filter="schemes">Scheme Forms</button>
+            <button class="btn btn-outline-primary rounded-pill px-3 download-filter" data-filter="circulars">Circulars & Rules</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Downloads Table Grid -->
+      <div class="glass-card p-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle table-download-custom" id="downloads-table">
+            <thead>
+              <tr>
+                <th>Document Title</th>
+                <th>Category</th>
+                <th>File Format</th>
+                <th>Size</th>
+                <th class="text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <!-- Doc 1 -->
+              <tr class="download-row-item" data-category="certificates">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="doc-icon-box me-3 text-danger"><i class="far fa-file-pdf fa-2x"></i></div>
+                    <div>
+                      <h6 class="fw-bold mb-0 text-primary">Birth Certificate Application Form</h6>
+                      <small class="text-muted text-xs">Official form needed to register births under state municipality acts.</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="badge bg-primary-soft text-primary border border-primary">Certificate</span></td>
+                <td><span class="fw-bold text-muted">PDF</span></td>
+                <td><span class="text-muted">320 KB</span></td>
+                <td class="text-end">
+                  <button class="btn btn-primary btn-sm btn-ripple rounded-pill px-3 trigger-download-btn" data-filename="birth_certificate_form.pdf"><i class="fas fa-download me-1"></i>Download</button>
+                </td>
+              </tr>
+
+              <!-- Doc 2 -->
+              <tr class="download-row-item" data-category="certificates">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="doc-icon-box me-3 text-danger"><i class="far fa-file-pdf fa-2x"></i></div>
+                    <div>
+                      <h6 class="fw-bold mb-0 text-primary">Income & Asset Certificate Form</h6>
+                      <small class="text-muted text-xs">Application needed to claim reservation benefits under EWS categories.</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="badge bg-primary-soft text-primary border border-primary">Certificate</span></td>
+                <td><span class="fw-bold text-muted">PDF</span></td>
+                <td><span class="text-muted">450 KB</span></td>
+                <td class="text-end">
+                  <button class="btn btn-primary btn-sm btn-ripple rounded-pill px-3 trigger-download-btn" data-filename="income_certificate_form.pdf"><i class="fas fa-download me-1"></i>Download</button>
+                </td>
+              </tr>
+
+              <!-- Doc 3 -->
+              <tr class="download-row-item" data-category="schemes">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="doc-icon-box me-3 text-primary"><i class="far fa-file-word fa-2x"></i></div>
+                    <div>
+                      <h6 class="fw-bold mb-0 text-primary">PM Kisan Land Registrations Template</h6>
+                      <small class="text-muted text-xs">Blank land record declaration page matching PM Kisan rules.</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="badge bg-success-soft text-success border border-success">Schemes</span></td>
+                <td><span class="fw-bold text-muted">DOCX</span></td>
+                <td><span class="text-muted">1.2 MB</span></td>
+                <td class="text-end">
+                  <button class="btn btn-primary btn-sm btn-ripple rounded-pill px-3 trigger-download-btn" data-filename="pm_kisan_declaration.docx"><i class="fas fa-download me-1"></i>Download</button>
+                </td>
+              </tr>
+
+              <!-- Doc 4 -->
+              <tr class="download-row-item" data-category="schemes">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="doc-icon-box me-3 text-danger"><i class="far fa-file-pdf fa-2x"></i></div>
+                    <div>
+                      <h6 class="fw-bold mb-0 text-primary">Ayushman Golden Card Application Form</h6>
+                      <small class="text-muted text-xs">Self-declaration paper to join the family health register.</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="badge bg-success-soft text-success border border-success">Schemes</span></td>
+                <td><span class="fw-bold text-muted">PDF</span></td>
+                <td><span class="text-muted">610 KB</span></td>
+                <td class="text-end">
+                  <button class="btn btn-primary btn-sm btn-ripple rounded-pill px-3 trigger-download-btn" data-filename="ayushman_card_form.pdf"><i class="fas fa-download me-1"></i>Download</button>
+                </td>
+              </tr>
+
+              <!-- Doc 5 -->
+              <tr class="download-row-item" data-category="circulars">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="doc-icon-box me-3 text-danger"><i class="far fa-file-pdf fa-2x"></i></div>
+                    <div>
+                      <h6 class="fw-bold mb-0 text-primary">Water Quality Guidelines Circular (2026)</h6>
+                      <small class="text-muted text-xs">Official directives from the sanitation department regarding tube-well water preservation.</small>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="badge bg-warning-soft text-warning border border-warning">Circulars</span></td>
+                <td><span class="fw-bold text-muted">PDF</span></td>
+                <td><span class="text-muted">890 KB</span></td>
+                <td class="text-end">
+                  <button class="btn btn-primary btn-sm btn-ripple rounded-pill px-3 trigger-download-btn" data-filename="water_circular_2026.pdf"><i class="fas fa-download me-1"></i>Download</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Notification element -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="downloadToast" class="toast glass-card" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-primary text-white border-0">
+        <i class="fas fa-file-download me-2"></i>
+        <strong class="me-auto">File Downloaded</strong>
+        <small>Just Now</small>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body text-primary fw-medium" id="toast-filename">
+        File has been saved to your downloads directory successfully.
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Footer -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <h5 class="fw-bold mb-3"><i class="fas fa-landmark text-primary me-2"></i>Smart Gram Panchayat</h5>
+          <p class="text-muted text-sm">Building transparent, digitally-connected local governance systems. Providing central utility files, village developments, and agricultural rates transparently.</p>
+          <div class="mt-4">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About Panchayat</a></li>
+            <li><a href="members.html">Panchayat Members</a></li>
+            <li><a href="information.html">Village Infrastructure</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h5>Services</h5>
+          <ul class="footer-links">
+            <li><a href="schemes.html">Govt Schemes</a></li>
+            <li><a href="projects.html">Development Projects</a></li>
+            <li><a href="agriculture.html">Agriculture & Mandi</a></li>
+            <li><a href="downloads.html">Application Forms</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h5>E-Newsletter Signup</h5>
+          <p class="text-muted text-sm mb-3">Subscribe to get notifications about Gram Sabha meetings, schemes, and programs directly in your mailbox.</p>
+          <form id="newsletter-form" class="newsletter-form d-flex gap-2">
+            <input type="email" class="form-control" placeholder="Enter email address" required aria-label="Email address">
+            <button type="submit" class="btn btn-primary btn-ripple px-3"><i class="fas fa-paper-plane text-inverse"></i></button>
+          </form>
+        </div>
+      </div>
+      <hr class="bg-secondary my-4">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start text-muted text-sm">
+          &copy; 2026 Smart Gram Panchayat. Developed for digital education. All rights reserved.
+        </div>
+        <div class="col-md-6 text-center text-md-end text-sm mt-2 mt-md-0">
+          <a href="privacy.html" class="text-muted me-3">Privacy Policy</a>
+          <a href="disclaimer.html" class="text-muted">Disclaimer Statement</a>
+        </div>
+      </div>
+      <div class="row mt-3 text-center">
+        <div class="col-12">
+          <p class="text-accent fw-bold text-sm mb-0">
+            <i class="fas fa-info-circle me-1"></i> This website is NOT an official Government website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/downloads.js"></script>
+</body>
+</html>

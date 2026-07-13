@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panchayat Members - Smart Gram Panchayat Portal</title>
+  <meta name="description" content="Get in touch with the elected ward members, Sarpanch, Up-Sarpanch and administrative department secretaries of Ramnagar Panchayat.">
+  
+  <!-- CSS Stylesheets -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/members.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader" class="loader-wrapper">
+    <div class="loader-spinner"></div>
+    <h5 class="text-primary fw-semibold">Loading Member Profiles...</h5>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-custom py-3">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="fas fa-landmark text-primary"></i>
+        <span>Smart Panchayat</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fas fa-bars text-primary"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" aria-expanded="false">About</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="about.html">Panchayat Details</a></li>
+              <li><a class="dropdown-item active" href="members.html">Panchayat Members</a></li>
+              <li><a class="dropdown-item" href="information.html">Village Info & Stats</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="schemes.html">Schemes</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="agriculture.html">Agriculture & Mandi</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="downloads.html">Downloads</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          
+          <li class="nav-item ms-lg-3 d-flex align-items-center mt-3 mt-lg-0">
+            <button id="search-trigger" class="search-trigger-btn" title="Search Site">
+              <i class="fas fa-search"></i>
+            </button>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Global Search Overlay -->
+  <div id="search-overlay" class="search-overlay">
+    <div class="search-container">
+      <button id="search-close" class="search-close">&times;</button>
+      <h5 class="mb-3 text-primary fw-bold"><i class="fas fa-search me-2"></i>Search Portal</h5>
+      <input type="text" id="global-search-input" class="form-control form-control-lg border-2 border-primary mb-3 bg-transparent text-primary" placeholder="Type to search (e.g. Kisan, Sarpanch, Forms)..." autocomplete="off">
+      <div id="search-results" class="list-group">
+        <p class="text-muted text-center">Type at least 2 characters to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Hero Header -->
+  <section class="page-hero">
+    <div class="container" data-aos="zoom-out">
+      <h1>Panchayat Leadership & Members</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="about.html">About</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Panchayat Members</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Panchayat Members Grid -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-title text-center" data-aos="fade-up">
+        <h2>Elected Representatives & Administration</h2>
+        <p>Browse our list of local leaders and public administrative workers working collectively towards Ramnagar's prosperity.</p>
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-5" data-aos="fade-up">
+        <button class="btn btn-primary rounded-pill px-4 filter-btn active" data-filter="all">All Profiles</button>
+        <button class="btn btn-outline-primary rounded-pill px-4 filter-btn" data-filter="executives">Leadership (Sarpanch/Up-Sarpanch)</button>
+        <button class="btn btn-outline-primary rounded-pill px-4 filter-btn" data-filter="staff">Administration Staff</button>
+        <button class="btn btn-outline-primary rounded-pill px-4 filter-btn" data-filter="wards">Ward Members</button>
+      </div>
+
+      <!-- Members Row -->
+      <div class="row g-4 justify-content-center" id="members-grid">
+        
+        <!-- Member 1: Sarpanch -->
+        <div class="col-lg-4 col-md-6 member-item-container" data-category="executives" data-aos="fade-up" data-aos-delay="100">
+          <div class="glass-card member-card text-center p-4">
+            <div class="member-avatar-wrapper mb-3 mx-auto">
+              <img src="../images/office.png" class="member-avatar" alt="Devki Devi">
+            </div>
+            <h5 class="fw-bold mb-1">papu Gamad</h5>
+            <span class="badge bg-success mb-3 px-3 py-1 text-uppercase">Sarpanch</span>
+            <p class="text-muted text-sm mb-4">Responsible for general budget planning, scheme executions, and presiding over assembly calls.</p>
+            <div class="member-contacts border-top pt-3 d-flex justify-content-around">
+              <a href="tel:+919876543210" class="btn btn-sm btn-light rounded-circle" title="Call"><i class="fas fa-phone-alt text-primary"></i></a>
+              <a href="mailto:sarpanch@ramnagar.gov.in" class="btn btn-sm btn-light rounded-circle" title="Email"><i class="fas fa-envelope text-primary"></i></a>
+              <button class="btn btn-sm btn-primary rounded-pill px-3 contact-member-btn" data-name="Smt. Devki Devi">Message</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 2: Up-Sarpanch -->
+        <div class="col-lg-4 col-md-6 member-item-container" data-category="executives" data-aos="fade-up" data-aos-delay="200">
+          <div class="glass-card member-card text-center p-4">
+            <div class="member-avatar-wrapper mb-3 mx-auto">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop" class="member-avatar" alt="Harish Singh">
+            </div>
+            <h5 class="fw-bold mb-1">Shri Harish Singh</h5>
+            <span class="badge bg-primary mb-3 px-3 py-1 text-uppercase">Up-Sarpanch</span>
+            <p class="text-muted text-sm mb-4">Directs sanitation, clean energy distributions, and substitutes for the Sarpanch's operational tasks.</p>
+            <div class="member-contacts border-top pt-3 d-flex justify-content-around">
+              <a href="tel:+919876543211" class="btn btn-sm btn-light rounded-circle" title="Call"><i class="fas fa-phone-alt text-primary"></i></a>
+              <a href="mailto:upsarpanch@ramnagar.gov.in" class="btn btn-sm btn-light rounded-circle" title="Email"><i class="fas fa-envelope text-primary"></i></a>
+              <button class="btn btn-sm btn-primary rounded-pill px-3 contact-member-btn" data-name="Shri Harish Singh">Message</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 3: Secretary -->
+        <div class="col-lg-4 col-md-6 member-item-container" data-category="staff" data-aos="fade-up" data-aos-delay="300">
+          <div class="glass-card member-card text-center p-4">
+            <div class="member-avatar-wrapper mb-3 mx-auto">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" class="member-avatar" alt="Raman Lal">
+            </div>
+            <h5 class="fw-bold mb-1">Shri Raman Lal</h5>
+            <span class="badge bg-secondary mb-3 px-3 py-1 text-uppercase">Gram Secretary (Sachiv)</span>
+            <p class="text-muted text-sm mb-4">Central administrator appointed by the state government for audits, record keeping, and approvals.</p>
+            <div class="member-contacts border-top pt-3 d-flex justify-content-around">
+              <a href="tel:+919876543212" class="btn btn-sm btn-light rounded-circle" title="Call"><i class="fas fa-phone-alt text-primary"></i></a>
+              <a href="mailto:sachiv@ramnagar.gov.in" class="btn btn-sm btn-light rounded-circle" title="Email"><i class="fas fa-envelope text-primary"></i></a>
+              <button class="btn btn-sm btn-primary rounded-pill px-3 contact-member-btn" data-name="Shri Raman Lal">Message</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 4: Ward Member 1 -->
+        <div class="col-lg-4 col-md-6 member-item-container" data-category="wards" data-aos="fade-up" data-aos-delay="400">
+          <div class="glass-card member-card text-center p-4">
+            <div class="member-avatar-wrapper mb-3 mx-auto">
+              <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop" class="member-avatar" alt="Sunil Kumar">
+            </div>
+            <h5 class="fw-bold mb-1">Shri Sunil Kumar</h5>
+            <span class="badge bg-info text-dark mb-3 px-3 py-1 text-uppercase">Ward 1 Representative</span>
+            <p class="text-muted text-sm mb-4">Focused on primary school renovations, library setups, and education materials access in Ward 1.</p>
+            <div class="member-contacts border-top pt-3 d-flex justify-content-around">
+              <a href="tel:+919876543213" class="btn btn-sm btn-light rounded-circle" title="Call"><i class="fas fa-phone-alt text-primary"></i></a>
+              <a href="mailto:ward1@ramnagar.gov.in" class="btn btn-sm btn-light rounded-circle" title="Email"><i class="fas fa-envelope text-primary"></i></a>
+              <button class="btn btn-sm btn-primary rounded-pill px-3 contact-member-btn" data-name="Shri Sunil Kumar">Message</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 5: Ward Member 2 -->
+        <div class="col-lg-4 col-md-6 member-item-container" data-category="wards" data-aos="fade-up" data-aos-delay="500">
+          <div class="glass-card member-card text-center p-4">
+            <div class="member-avatar-wrapper mb-3 mx-auto">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" class="member-avatar" alt="Kiran Devi">
+            </div>
+            <h5 class="fw-bold mb-1">Smt. Kiran Devi</h5>
+            <span class="badge bg-info text-dark mb-3 px-3 py-1 text-uppercase">Ward 2 Representative</span>
+            <p class="text-muted text-sm mb-4">Directs self-help groups, weaving cooperatives, and women's safety measures across Ward 2.</p>
+            <div class="member-contacts border-top pt-3 d-flex justify-content-around">
+              <a href="tel:+919876543214" class="btn btn-sm btn-light rounded-circle" title="Call"><i class="fas fa-phone-alt text-primary"></i></a>
+              <a href="mailto:ward2@ramnagar.gov.in" class="btn btn-sm btn-light rounded-circle" title="Email"><i class="fas fa-envelope text-primary"></i></a>
+              <button class="btn btn-sm btn-primary rounded-pill px-3 contact-member-btn" data-name="Smt. Kiran Devi">Message</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 6: Ward Member 3 -->
+        <div class="col-lg-4 col-md-6 member-item-container" data-category="wards" data-aos="fade-up" data-aos-delay="600">
+          <div class="glass-card member-card text-center p-4">
+            <div class="member-avatar-wrapper mb-3 mx-auto">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" class="member-avatar" alt="Manoj Pal">
+            </div>
+            <h5 class="fw-bold mb-1">Shri Manoj Pal</h5>
+            <span class="badge bg-info text-dark mb-3 px-3 py-1 text-uppercase">Ward 3 Representative</span>
+            <p class="text-muted text-sm mb-4">Responsible for water distribution grid setups and maintenance of check-dams in Ward 3.</p>
+            <div class="member-contacts border-top pt-3 d-flex justify-content-around">
+              <a href="tel:+919876543215" class="btn btn-sm btn-light rounded-circle" title="Call"><i class="fas fa-phone-alt text-primary"></i></a>
+              <a href="mailto:ward3@ramnagar.gov.in" class="btn btn-sm btn-light rounded-circle" title="Email"><i class="fas fa-envelope text-primary"></i></a>
+              <button class="btn btn-sm btn-primary rounded-pill px-3 contact-member-btn" data-name="Shri Manoj Pal">Message</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Contact Member Modal -->
+  <div class="modal fade" id="contactMemberModal" tabindex="-1" aria-labelledby="contactMemberModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content glass-card p-2 border-2 border-primary">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold text-primary" id="contactMemberModalLabel">Send Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="member-message-form">
+          <div class="modal-body">
+            <p class="text-muted text-sm">Send an query/complaint request to <strong id="recipient-member-name" class="text-dark">Devki Devi</strong> directly.</p>
+            <div class="mb-3">
+              <label for="sender-name" class="form-label text-sm fw-bold">Your Name</label>
+              <input type="text" class="form-control" id="sender-name" required placeholder="Enter full name">
+            </div>
+            <div class="mb-3">
+              <label for="sender-phone" class="form-label text-sm fw-bold">Mobile Number</label>
+              <input type="tel" class="form-control" id="sender-phone" required placeholder="Enter 10-digit number">
+            </div>
+            <div class="mb-3">
+              <label for="sender-message" class="form-label text-sm fw-bold">Message / Request Detail</label>
+              <textarea class="form-control" id="sender-message" rows="4" required placeholder="Type your query detail here..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer border-0 pt-0">
+            <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary rounded-pill px-4 text-inverse">Submit Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Footer -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <h5 class="fw-bold mb-3"><i class="fas fa-landmark text-primary me-2"></i>Smart Gram Panchayat</h5>
+          <p class="text-muted text-sm">Building transparent, digitally-connected local governance systems. Providing central utility files, village developments, and agricultural rates transparently.</p>
+          <div class="mt-4">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About Panchayat</a></li>
+            <li><a href="members.html">Panchayat Members</a></li>
+            <li><a href="information.html">Village Infrastructure</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h5>Services</h5>
+          <ul class="footer-links">
+            <li><a href="schemes.html">Govt Schemes</a></li>
+            <li><a href="projects.html">Development Projects</a></li>
+            <li><a href="agriculture.html">Agriculture & Mandi</a></li>
+            <li><a href="downloads.html">Application Forms</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h5>E-Newsletter Signup</h5>
+          <p class="text-muted text-sm mb-3">Subscribe to get notifications about Gram Sabha meetings, schemes, and programs directly in your mailbox.</p>
+          <form id="newsletter-form" class="newsletter-form d-flex gap-2">
+            <input type="email" class="form-control" placeholder="Enter email address" required aria-label="Email address">
+            <button type="submit" class="btn btn-primary btn-ripple px-3"><i class="fas fa-paper-plane text-inverse"></i></button>
+          </form>
+        </div>
+      </div>
+      <hr class="bg-secondary my-4">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start text-muted text-sm">
+          &copy; 2026 Smart Gram Panchayat. Developed for digital education. All rights reserved.
+        </div>
+        <div class="col-md-6 text-center text-md-end text-sm mt-2 mt-md-0">
+          <a href="privacy.html" class="text-muted me-3">Privacy Policy</a>
+          <a href="disclaimer.html" class="text-muted">Disclaimer Statement</a>
+        </div>
+      </div>
+      <div class="row mt-3 text-center">
+        <div class="col-12">
+          <p class="text-accent fw-bold text-sm mb-0">
+            <i class="fas fa-info-circle me-1"></i> This website is NOT an official Government website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/members.js"></script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Government Schemes - Smart Gram Panchayat Portal</title>
+  <meta name="description" content="Search and apply for central/state government welfare schemes: PM Kisan, PM Awas, MGNREGA, Ayushman Bharat, Jal Jeevan, and pensions.">
+  
+  <!-- CSS Stylesheets -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/schemes.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader" class="loader-wrapper">
+    <div class="loader-spinner"></div>
+    <h5 class="text-primary fw-semibold">Loading Welfare Schemes...</h5>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-custom py-3">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="fas fa-landmark text-primary"></i>
+        <span>Smart Panchayat</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fas fa-bars text-primary"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">About</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="about.html">Panchayat Details</a></li>
+              <li><a class="dropdown-item" href="members.html">Panchayat Members</a></li>
+              <li><a class="dropdown-item" href="information.html">Village Info & Stats</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link active" href="schemes.html">Schemes</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="agriculture.html">Agriculture & Mandi</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="downloads.html">Downloads</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          
+          <li class="nav-item ms-lg-3 d-flex align-items-center mt-3 mt-lg-0">
+            <button id="search-trigger" class="search-trigger-btn" title="Search Site">
+              <i class="fas fa-search"></i>
+            </button>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Global Search Overlay -->
+  <div id="search-overlay" class="search-overlay">
+    <div class="search-container">
+      <button id="search-close" class="search-close">&times;</button>
+      <h5 class="mb-3 text-primary fw-bold"><i class="fas fa-search me-2"></i>Search Portal</h5>
+      <input type="text" id="global-search-input" class="form-control form-control-lg border-2 border-primary mb-3 bg-transparent text-primary" placeholder="Type to search (e.g. Kisan, Sarpanch, Forms)..." autocomplete="off">
+      <div id="search-results" class="list-group">
+        <p class="text-muted text-center">Type at least 2 characters to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Hero Header -->
+  <section class="page-hero">
+    <div class="container" data-aos="zoom-out">
+      <h1>Government Welfare Schemes</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Government Schemes</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Schemes Directory Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="row align-items-center mb-5 g-4" data-aos="fade-up">
+        <!-- Search bar -->
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text bg-transparent border-primary text-primary border-2 border-end-0"><i class="fas fa-search"></i></span>
+            <input type="text" id="scheme-search-input" class="form-control border-primary border-2 border-start-0 bg-transparent text-primary" placeholder="Search schemes by name or keywords...">
+          </div>
+        </div>
+        <!-- Filters dropdown/buttons -->
+        <div class="col-md-7">
+          <div class="d-flex justify-content-md-end flex-wrap gap-2">
+            <button class="btn btn-primary rounded-pill px-3 active scheme-filter" data-filter="all">All Categories</button>
+            <button class="btn btn-outline-primary rounded-pill px-3 scheme-filter" data-filter="agriculture">Agriculture</button>
+            <button class="btn btn-outline-primary rounded-pill px-3 scheme-filter" data-filter="housing">Housing & Infra</button>
+            <button class="btn btn-outline-primary rounded-pill px-3 scheme-filter" data-filter="health">Health & Care</button>
+            <button class="btn btn-outline-primary rounded-pill px-3 scheme-filter" data-filter="education">Education</button>
+            <button class="btn btn-outline-primary rounded-pill px-3 scheme-filter" data-filter="pension">Pension</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schemes Grid -->
+      <div class="row g-4" id="schemes-grid">
+        
+        <!-- Scheme 1: PM Kisan -->
+        <div class="col-xl-4 col-md-6 scheme-item-wrapper" data-category="agriculture" data-keywords="kisan farming cash transfer land support" data-aos="fade-up" data-aos-delay="100">
+          <div class="glass-card scheme-card h-100 d-flex flex-column">
+            <img src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?q=80&w=400&auto=format&fit=crop" class="card-img-top scheme-card-img" alt="PM Kisan">
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <span class="badge bg-success mb-2 align-self-start">Agriculture</span>
+              <h5 class="fw-bold mb-3">PM Kisan Samman Nidhi</h5>
+              <p class="text-muted text-sm flex-grow-1">Provides income support of ₹6,000 per year in three equal installments to all landholding farmer families across the country.</p>
+              <div class="scheme-details mb-4">
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Benefits:</h6>
+                <ul class="text-muted text-xs ps-3 mb-3">
+                  <li>₹6,000 yearly bank cash transfer.</li>
+                  <li>Direct Benefit Transfer (DBT) security.</li>
+                </ul>
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Eligibility:</h6>
+                <ul class="text-muted text-xs ps-3 mb-0">
+                  <li>Small/marginal landholding farmers.</li>
+                  <li>Land ownership papers in applicant's name.</li>
+                </ul>
+              </div>
+              <a href="https://pmkisan.gov.in/" target="_blank" class="btn btn-primary btn-ripple w-100 rounded-pill text-inverse">Official Portal <i class="fas fa-external-link-alt ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scheme 2: PM Awas -->
+        <div class="col-xl-4 col-md-6 scheme-item-wrapper" data-category="housing" data-keywords="awas housing home subsidy building poor rural" data-aos="fade-up" data-aos-delay="200">
+          <div class="glass-card scheme-card h-100 d-flex flex-column">
+            <img src="https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?q=80&w=400&auto=format&fit=crop" class="card-img-top scheme-card-img" alt="PM Awas">
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <span class="badge bg-warning text-dark mb-2 align-self-start">Housing & Infra</span>
+              <h5 class="fw-bold mb-3">PM Awas Yojana (PMAY-Gramin)</h5>
+              <p class="text-muted text-sm flex-grow-1">Financial subsidy program to help homeless families or families living in dilapidated houses build concrete (pucca) housing units.</p>
+              <div class="scheme-details mb-4">
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Benefits:</h6>
+                <ul class="text-muted text-xs ps-3 mb-3">
+                  <li>Up to ₹1.20 Lakh subsidy for plain areas.</li>
+                  <li>Additional subsidy support for toilet building.</li>
+                </ul>
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Eligibility:</h6>
+                <ul class="text-muted text-xs ps-3 mb-0">
+                  <li>Families without pucca home units.</li>
+                  <li>SECC data verified under poverty lists.</li>
+                </ul>
+              </div>
+              <a href="https://pmayg.nic.in/" target="_blank" class="btn btn-primary btn-ripple w-100 rounded-pill text-inverse">Official Portal <i class="fas fa-external-link-alt ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scheme 3: MGNREGA -->
+        <div class="col-xl-4 col-md-6 scheme-item-wrapper" data-category="pension" data-keywords="mgnrega job card manual labor employment wage rural" data-aos="fade-up" data-aos-delay="300">
+          <div class="glass-card scheme-card h-100 d-flex flex-column">
+            <img src="https://images.unsplash.com/photo-1615631648086-325025c9e51e?q=80&w=400&auto=format&fit=crop" class="card-img-top scheme-card-img" alt="MGNREGA">
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <span class="badge bg-secondary mb-2 align-self-start">Labour & Wage</span>
+              <h5 class="fw-bold mb-3">MGNREGA Job Card Scheme</h5>
+              <p class="text-muted text-sm flex-grow-1">Guarantees 100 days of manual wage employment in every financial year to adult members of rural households willing to do volunteer unskilled manual work.</p>
+              <div class="scheme-details mb-4">
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Benefits:</h6>
+                <ul class="text-muted text-xs ps-3 mb-3">
+                  <li>100 days guaranteed wage labor.</li>
+                  <li>Direct bank wage payment within 15 days.</li>
+                </ul>
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Eligibility:</h6>
+                <ul class="text-muted text-xs ps-3 mb-0">
+                  <li>Adult rural family members.</li>
+                  <li>Willing to perform unskilled manual activities.</li>
+                </ul>
+              </div>
+              <a href="https://nrega.nic.in/" target="_blank" class="btn btn-primary btn-ripple w-100 rounded-pill text-inverse">Official Portal <i class="fas fa-external-link-alt ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scheme 4: Ayushman Bharat -->
+        <div class="col-xl-4 col-md-6 scheme-item-wrapper" data-category="health" data-keywords="ayushman bharat card hospital medical care health insurance cash free" data-aos="fade-up" data-aos-delay="400">
+          <div class="glass-card scheme-card h-100 d-flex flex-column">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=400&auto=format&fit=crop" class="card-img-top scheme-card-img" alt="Ayushman Bharat">
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <span class="badge bg-danger mb-2 align-self-start">Health & Care</span>
+              <h5 class="fw-bold mb-3">Ayushman Bharat (PM-JAY)</h5>
+              <p class="text-muted text-sm flex-grow-1">Provides health insurance coverage up to ₹5 Lakh per family per year for secondary and tertiary care hospitalization across public/private networks.</p>
+              <div class="scheme-details mb-4">
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Benefits:</h6>
+                <ul class="text-muted text-xs ps-3 mb-3">
+                  <li>₹5,00,000 cashless medical insurance.</li>
+                  <li>Covers diagnostics, medicine, pre/post-hospital care.</li>
+                </ul>
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Eligibility:</h6>
+                <ul class="text-muted text-xs ps-3 mb-0">
+                  <li>Identified vulnerable rural families.</li>
+                  <li>No age, size, or gender limit exclusions.</li>
+                </ul>
+              </div>
+              <a href="https://pmjay.gov.in/" target="_blank" class="btn btn-primary btn-ripple w-100 rounded-pill text-inverse">Official Portal <i class="fas fa-external-link-alt ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scheme 5: Jal Jeevan Mission -->
+        <div class="col-xl-4 col-md-6 scheme-item-wrapper" data-category="housing" data-keywords="water tap jal jeevan pipeline supply drinking home" data-aos="fade-up" data-aos-delay="500">
+          <div class="glass-card scheme-card h-100 d-flex flex-column">
+            <img src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?q=80&w=400&auto=format&fit=crop" class="card-img-top scheme-card-img" alt="Jal Jeevan">
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <span class="badge bg-warning text-dark mb-2 align-self-start">Housing & Infra</span>
+              <h5 class="fw-bold mb-3">Jal Jeevan Mission (Har Ghar Jal)</h5>
+              <p class="text-muted text-sm flex-grow-1">Aims to provide safe and adequate drinking water through individual household tap connections to all households in rural India.</p>
+              <div class="scheme-details mb-4">
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Benefits:</h6>
+                <ul class="text-muted text-xs ps-3 mb-3">
+                  <li>55 liters water per person daily tap connection.</li>
+                  <li>Water quality testing and purification training.</li>
+                </ul>
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Eligibility:</h6>
+                <ul class="text-muted text-xs ps-3 mb-0">
+                  <li>Every rural family household.</li>
+                  <li>Joint implementation via village committee.</li>
+                </ul>
+              </div>
+              <a href="https://jaljeevanmission.gov.in/" target="_blank" class="btn btn-primary btn-ripple w-100 rounded-pill text-inverse">Official Portal <i class="fas fa-external-link-alt ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scheme 6: National Pension -->
+        <div class="col-xl-4 col-md-6 scheme-item-wrapper" data-category="pension" data-keywords="pension senior old age widow disabled cash support" data-aos="fade-up" data-aos-delay="600">
+          <div class="glass-card scheme-card h-100 d-flex flex-column">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" class="card-img-top scheme-card-img" alt="National Pension">
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <span class="badge bg-info text-dark mb-2 align-self-start">Pension</span>
+              <h5 class="fw-bold mb-3">Indira Gandhi National Old Age Pension</h5>
+              <p class="text-muted text-sm flex-grow-1">A monthly financial pension benefit scheme to elderly, widow, and disabled citizens belonging to Below Poverty Line (BPL) lists.</p>
+              <div class="scheme-details mb-4">
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Benefits:</h6>
+                <ul class="text-muted text-xs ps-3 mb-3">
+                  <li>Up to ₹500 - ₹1000 monthly cash deposits.</li>
+                  <li>Direct disbursement on 1st of every month.</li>
+                </ul>
+                <h6 class="fw-bold text-xs text-uppercase tracking-wider text-primary mb-2">Eligibility:</h6>
+                <ul class="text-muted text-xs ps-3 mb-0">
+                  <li>Age 60 years and above.</li>
+                  <li>BPL database verified residents.</li>
+                </ul>
+              </div>
+              <a href="https://nsap.nic.in/" target="_blank" class="btn btn-primary btn-ripple w-100 rounded-pill text-inverse">Official Portal <i class="fas fa-external-link-alt ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Footer -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <h5 class="fw-bold mb-3"><i class="fas fa-landmark text-primary me-2"></i>Smart Gram Panchayat</h5>
+          <p class="text-muted text-sm">Building transparent, digitally-connected local governance systems. Providing central utility files, village developments, and agricultural rates transparently.</p>
+          <div class="mt-4">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About Panchayat</a></li>
+            <li><a href="members.html">Panchayat Members</a></li>
+            <li><a href="information.html">Village Infrastructure</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h5>Services</h5>
+          <ul class="footer-links">
+            <li><a href="schemes.html">Govt Schemes</a></li>
+            <li><a href="projects.html">Development Projects</a></li>
+            <li><a href="agriculture.html">Agriculture & Mandi</a></li>
+            <li><a href="downloads.html">Application Forms</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h5>E-Newsletter Signup</h5>
+          <p class="text-muted text-sm mb-3">Subscribe to get notifications about Gram Sabha meetings, schemes, and programs directly in your mailbox.</p>
+          <form id="newsletter-form" class="newsletter-form d-flex gap-2">
+            <input type="email" class="form-control" placeholder="Enter email address" required aria-label="Email address">
+            <button type="submit" class="btn btn-primary btn-ripple px-3"><i class="fas fa-paper-plane text-inverse"></i></button>
+          </form>
+        </div>
+      </div>
+      <hr class="bg-secondary my-4">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start text-muted text-sm">
+          &copy; 2026 Smart Gram Panchayat. Developed for digital education. All rights reserved.
+        </div>
+        <div class="col-md-6 text-center text-md-end text-sm mt-2 mt-md-0">
+          <a href="privacy.html" class="text-muted me-3">Privacy Policy</a>
+          <a href="disclaimer.html" class="text-muted">Disclaimer Statement</a>
+        </div>
+      </div>
+      <div class="row mt-3 text-center">
+        <div class="col-12">
+          <p class="text-accent fw-bold text-sm mb-0">
+            <i class="fas fa-info-circle me-1"></i> This website is NOT an official Government website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/schemes.js"></script>
+</body>
+</html>

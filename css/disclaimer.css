@@ -1,0 +1,11 @@
+/* ==========================================================================
+   DISCLAIMER PAGE SPECIFIC STYLING (SMART GRAM PANCHAYAT)
+   ========================================================================== */
+
+/* Disclaimer styling overrides */
+.border-danger {
+  border-color: #dc3545 !important;
+}
+.lead {
+  font-size: 1.15rem;
+}

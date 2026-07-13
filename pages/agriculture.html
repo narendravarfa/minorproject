@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agriculture & Mandi - Smart Gram Panchayat Portal</title>
+  <meta name="description" content="View live local village weather forecasting, today's agricultural mandi rates, crop price charts, and soil-to-crop matching advisories.">
+  
+  <!-- CSS Stylesheets -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/agriculture.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div id="page-loader" class="loader-wrapper">
+    <div class="loader-spinner"></div>
+    <h5 class="text-primary fw-semibold">Loading Agriculture Portal...</h5>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-custom py-3">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="fas fa-landmark text-primary"></i>
+        <span>Smart Panchayat</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fas fa-bars text-primary"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">About</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="about.html">Panchayat Details</a></li>
+              <li><a class="dropdown-item" href="members.html">Panchayat Members</a></li>
+              <li><a class="dropdown-item" href="information.html">Village Info & Stats</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="schemes.html">Schemes</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link active" href="agriculture.html">Agriculture & Mandi</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="downloads.html">Downloads</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          
+          <li class="nav-item ms-lg-3 d-flex align-items-center mt-3 mt-lg-0">
+            <button id="search-trigger" class="search-trigger-btn" title="Search Site">
+              <i class="fas fa-search"></i>
+            </button>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Global Search Overlay -->
+  <div id="search-overlay" class="search-overlay">
+    <div class="search-container">
+      <button id="search-close" class="search-close">&times;</button>
+      <h5 class="mb-3 text-primary fw-bold"><i class="fas fa-search me-2"></i>Search Portal</h5>
+      <input type="text" id="global-search-input" class="form-control form-control-lg border-2 border-primary mb-3 bg-transparent text-primary" placeholder="Type to search (e.g. Kisan, Sarpanch, Forms)..." autocomplete="off">
+      <div id="search-results" class="list-group">
+        <p class="text-muted text-center">Type at least 2 characters to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Hero Header -->
+  <section class="page-hero">
+    <div class="container" data-aos="zoom-out">
+      <h1>Agriculture & Mandi Portal</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Agriculture & Weather</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Live Weather Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5" data-aos="fade-right">
+          <!-- Main Weather Card -->
+          <div class="weather-full-card glass-card p-4 text-center text-white">
+            <h4 class="fw-bold mb-3 font-playfair"><i class="fas fa-satellite-dish text-accent me-2"></i>Live Weather Advisory</h4>
+            <div class="my-4">
+              <div class="weather-main-icon mb-3"><i class="fas fa-cloud-sun-rain fa-4x text-warning"></i></div>
+              <h1 id="live-temp" class="display-3 fw-bold">31.4°C</h1>
+              <h5 id="live-desc" class="fw-medium text-capitalize mt-2">Scattered Rain Showers</h5>
+              <p class="text-white-50 text-sm mt-1">Location: Ramnagar Central (26.84°N, 80.94°E)</p>
+            </div>
+            <div class="row g-2 border-top border-white-10 pt-3 mt-3 text-center">
+              <div class="col-6">
+                <small class="text-white-50 d-block text-xs text-uppercase">Humidity</small>
+                <span id="live-humidity" class="fw-bold fs-5">72%</span>
+              </div>
+              <div class="col-6">
+                <small class="text-white-50 d-block text-xs text-uppercase">Wind Speed</small>
+                <span id="live-wind" class="fw-bold fs-5">14.2 km/h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7" data-aos="fade-left">
+          <span class="badge bg-success px-3 py-2 mb-3">WEATHER FORECAST</span>
+          <h2 class="font-playfair display-5 mb-4">Plan your sowing and harvesting activities effectively.</h2>
+          <p class="text-muted">Weather plays a vital role in agricultural planning. Our forecasting system retrieves live parameters to advice on soil preparation, irrigation schedules, pesticide deployments, and crop protection.</p>
+          
+          <div class="row g-4 mt-3">
+            <div class="col-md-6">
+              <div class="glass-card p-3 border-start border-4 border-success">
+                <h6 class="fw-bold mb-1"><i class="fas fa-tint me-2 text-info"></i>Irrigation Advisory</h6>
+                <p class="text-muted text-sm mb-0">Due to predicted scattered showers, delay heavy flood irrigation for Kharif paddy crops till Tuesday.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="glass-card p-3 border-start border-4 border-warning">
+                <h6 class="fw-bold mb-1"><i class="fas fa-spray-can me-2 text-accent"></i>Pesticide Deployment</h6>
+                <p class="text-muted text-sm mb-0">Wind speeds are moderate. Sowing and spraying actions can be taken safely between 7:00 AM to 11:00 AM.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mandi Prices & Trend Chart -->
+  <section class="section-padding bg-light-soft" id="mandi">
+    <div class="container">
+      <div class="section-title text-center" data-aos="fade-up">
+        <h2>Mandi Grain Market Rates</h2>
+        <p>Review today's local commodity prices, volume updates, and past market price trends in nearby government mandis.</p>
+      </div>
+
+      <div class="row g-5">
+        <!-- Mandi Price List -->
+        <div class="col-lg-5" data-aos="fade-right">
+          <div class="glass-card p-4 h-100">
+            <h5 class="fw-bold border-bottom pb-3 mb-4"><i class="fas fa-shopping-basket text-primary me-2"></i>Daily Mandi Price Index</h5>
+            <div class="mandi-table-container">
+              <table class="table table-hover table-custom align-middle">
+                <thead>
+                  <tr>
+                    <th>Commodity</th>
+                    <th class="text-end">Min Price</th>
+                    <th class="text-end">Max Price</th>
+                    <th class="text-end">Today's Avg</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="fw-semibold">Wheat (Kanak)</span></td>
+                    <td class="text-end">₹2,200</td>
+                    <td class="text-end">₹2,350</td>
+                    <td class="text-end fw-bold text-success">₹2,275 <i class="fas fa-caret-up"></i></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-semibold">Rice (Paddy)</span></td>
+                    <td class="text-end">₹2,100</td>
+                    <td class="text-end">₹2,250</td>
+                    <td class="text-end fw-bold text-success">₹2,180 <i class="fas fa-caret-up"></i></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-semibold">Potato (Alu)</span></td>
+                    <td class="text-end">₹1,380</td>
+                    <td class="text-end">₹1,520</td>
+                    <td class="text-end fw-bold text-danger">₹1,450 <i class="fas fa-caret-down"></i></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-semibold">Mustard Seeds</span></td>
+                    <td class="text-end">₹5,200</td>
+                    <td class="text-end">₹5,600</td>
+                    <td class="text-end fw-bold text-success">₹5,400 <i class="fas fa-caret-up"></i></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fw-semibold">Onion (Pyaj)</span></td>
+                    <td class="text-end">₹1,800</td>
+                    <td class="text-end">₹2,100</td>
+                    <td class="text-end fw-bold text-success">₹1,950 <i class="fas fa-caret-up"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-muted text-xs mb-0 mt-3"><i class="fas fa-history me-1"></i>Last updated: July 03, 2026 at 10:00 AM from Local Mandi Yard.</p>
+          </div>
+        </div>
+
+        <!-- Price Trend Chart -->
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="glass-card p-4 h-100">
+            <h5 class="fw-bold mb-3"><i class="fas fa-chart-line text-primary me-2"></i>Wheat & Paddy Price Trends (Last 6 Months)</h5>
+            <canvas id="mandiTrendChart" style="max-height: 350px;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soil & Crop Doctor tool -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-title text-center" data-aos="fade-up">
+        <h2>Soil & Crop Doctor</h2>
+        <p>A smart utility designed to help farmers select the best matching crops based on soil type and agricultural seasons.</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8" data-aos="zoom-in">
+          <div class="glass-card p-4 border border-primary border-2">
+            <h5 class="fw-bold text-center text-primary mb-4"><i class="fas fa-seedling me-2"></i>Match Soil & Season</h5>
+            <div class="row g-3">
+              <!-- Soil Type -->
+              <div class="col-md-6">
+                <label for="soil-select" class="form-label text-sm fw-bold">Select Soil Type</label>
+                <select class="form-select" id="soil-select">
+                  <option value="alluvial" selected>Alluvial Soil (Highly Fertile)</option>
+                  <option value="black">Black Soil (Clayey/Moisture Retaining)</option>
+                  <option value="red">Red/Sandy Soil (Well Drained)</option>
+                </select>
+              </div>
+              <!-- Season -->
+              <div class="col-md-6">
+                <label for="season-select" class="form-label text-sm fw-bold">Select Season</label>
+                <select class="form-select" id="season-select">
+                  <option value="kharif" selected>Kharif (Monsoon: July - Oct)</option>
+                  <option value="rabi">Rabi (Winter: Nov - April)</option>
+                  <option value="zaid">Zaid (Summer: May - June)</option>
+                </select>
+              </div>
+            </div>
+            <div class="text-center mt-4">
+              <button class="btn btn-primary rounded-pill btn-ripple px-5 text-inverse" id="btn-diagnose-crop">Analyze Suggestions</button>
+            </div>
+
+            <!-- Result block -->
+            <div id="crop-doctor-result" class="mt-4 p-4 border-top border-white-10 style-result-block" style="display: none;">
+              <h5 class="fw-bold text-success mb-3"><i class="fas fa-check-circle me-2"></i>Suggested Crops:</h5>
+              <div class="row g-3" id="suggested-crops-container">
+                <!-- suggestions populated by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Footer -->
+  <footer class="footer-custom">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <h5 class="fw-bold mb-3"><i class="fas fa-landmark text-primary me-2"></i>Smart Gram Panchayat</h5>
+          <p class="text-muted text-sm">Building transparent, digitally-connected local governance systems. Providing central utility files, village developments, and agricultural rates transparently.</p>
+          <div class="mt-4">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About Panchayat</a></li>
+            <li><a href="members.html">Panchayat Members</a></li>
+            <li><a href="information.html">Village Infrastructure</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+          <h5>Services</h5>
+          <ul class="footer-links">
+            <li><a href="schemes.html">Govt Schemes</a></li>
+            <li><a href="projects.html">Development Projects</a></li>
+            <li><a href="agriculture.html">Agriculture & Mandi</a></li>
+            <li><a href="downloads.html">Application Forms</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h5>E-Newsletter Signup</h5>
+          <p class="text-muted text-sm mb-3">Subscribe to get notifications about Gram Sabha meetings, schemes, and programs directly in your mailbox.</p>
+          <form id="newsletter-form" class="newsletter-form d-flex gap-2">
+            <input type="email" class="form-control" placeholder="Enter email address" required aria-label="Email address">
+            <button type="submit" class="btn btn-primary btn-ripple px-3"><i class="fas fa-paper-plane text-inverse"></i></button>
+          </form>
+        </div>
+      </div>
+      <hr class="bg-secondary my-4">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start text-muted text-sm">
+          &copy; 2026 Smart Gram Panchayat. Developed for digital education. All rights reserved.
+        </div>
+        <div class="col-md-6 text-center text-md-end text-sm mt-2 mt-md-0">
+          <a href="privacy.html" class="text-muted me-3">Privacy Policy</a>
+          <a href="disclaimer.html" class="text-muted">Disclaimer Statement</a>
+        </div>
+      </div>
+      <div class="row mt-3 text-center">
+        <div class="col-12">
+          <p class="text-accent fw-bold text-sm mb-0">
+            <i class="fas fa-info-circle me-1"></i> This website is NOT an official Government website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-to-top" title="Back to Top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/agriculture.js"></script>
+</body>
+</html>

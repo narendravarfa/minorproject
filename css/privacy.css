@@ -1,0 +1,8 @@
+/* ==========================================================================
+   PRIVACY PAGE SPECIFIC STYLING (SMART GRAM PANCHAYAT)
+   ========================================================================== */
+
+/* Privacy Page specific formatting overrides */
+.glass-card {
+  border-radius: var(--border-radius);
+}

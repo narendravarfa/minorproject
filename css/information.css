@@ -1,0 +1,35 @@
+/* ==========================================================================
+   VILLAGE INFORMATION PAGE SPECIFIC STYLING (SMART GRAM PANCHAYAT)
+   ========================================================================== */
+
+/* Infrastructure grid card customization */
+.infra-card {
+  height: 100%;
+}
+.infra-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  background: rgba(var(--primary-rgb), 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+.infra-card:hover .infra-icon {
+  background: var(--primary);
+}
+.infra-card:hover .infra-icon i {
+  color: var(--text-inverse) !important;
+}
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+@media (max-width: 767.98px) {
+  .infra-card {
+    padding: 1.5rem !important;
+  }
+}

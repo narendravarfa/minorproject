@@ -1,0 +1,112 @@
+/* ==========================================================================
+   GALLERY PAGE SPECIFIC STYLING (SMART GRAM PANCHAYAT)
+   ========================================================================== */
+
+/* Zoom boxes */
+.gallery-zoom-box {
+  position: relative;
+}
+.gallery-thumbnail {
+  height: 240px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.gallery-zoom-box:hover .gallery-thumbnail {
+  transform: scale(1.1);
+}
+
+.gallery-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(var(--primary-rgb), 0.7);
+  opacity: 0;
+  transition: var(--transition);
+}
+.gallery-zoom-box:hover .gallery-hover-overlay {
+  opacity: 1;
+}
+
+.gallery-item-wrapper {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Lightbox custom overlay rules */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(11, 19, 14, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content-wrapper {
+  max-width: 90%;
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-image {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 3100;
+}
+.lightbox-close-btn:hover {
+  color: var(--accent);
+}
+
+.lightbox-action-btn {
+  position: absolute;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3100;
+  transition: var(--transition);
+}
+.lightbox-action-btn:hover {
+  background: var(--primary);
+  color: var(--text-inverse);
+}
+.bg-black-50 {
+  background: rgba(0, 0, 0, 0.5) !important;
+}

@@ -1,0 +1,136 @@
+/* ==========================================================================
+   HOMEPAGE SPECIFIC STYLING (SMART GRAM PANCHAYAT)
+   ========================================================================== */
+
+/* Hero Banner Sizing & Setup */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  height: 80vh;
+  min-height: 500px;
+}
+.hero-section .carousel,
+.hero-section .carousel-inner,
+.hero-section .carousel-item {
+  height: 100%;
+}
+.hero-section .carousel-item {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 1.2s ease-in-out, opacity 1s ease-in-out;
+}
+.hero-content {
+  max-width: 700px;
+  z-index: 10;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  line-height: 1.15;
+}
+.hero-content .badge {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+
+/* Service Card Overrides & Icons */
+.service-icon {
+  width: 65px;
+  height: 65px;
+  background: rgba(var(--primary-rgb), 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.glass-card:hover .service-icon {
+  background: var(--primary);
+}
+.glass-card:hover .service-icon i {
+  color: var(--text-inverse) !important;
+  transform: rotateY(360deg);
+}
+.service-icon i {
+  transition: transform 0.6s ease;
+}
+
+/* Statistics Section */
+.stats-section {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.9) 0%, rgba(13, 110, 253, 0.95) 100%),
+             url("../images/panchayat.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-top: 4px solid var(--accent);
+  border-bottom: 4px solid var(--accent);
+}
+.stat-box i {
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+.stat-box h2 {
+  font-size: 3rem;
+  margin: 10px 0;
+}
+
+/* Notice Cards custom board style */
+.notice-list-container {
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+.notice-card {
+  transition: var(--transition);
+}
+.notice-card:hover {
+  transform: translateX(5px);
+  border-color: var(--accent) !important;
+}
+
+/* Side Widgets styling */
+.weather-widget-card {
+  background: linear-gradient(135deg, #1b4d3e 0%, #112d24 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.mandi-widget-card {
+  border-left: 4px solid var(--primary);
+}
+
+/* Interactive Photo Overlay grid */
+.gallery-img {
+  height: 220px;
+  object-fit: cover;
+  transition: var(--transition);
+}
+.gallery-item-card:hover .gallery-img {
+  transform: scale(1.08);
+}
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(46, 125, 50, 0.8);
+  opacity: 0;
+  transition: var(--transition);
+}
+.gallery-item-card:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .hero-section {
+    height: 70vh;
+  }
+  .stat-box h2 {
+    font-size: 2.2rem;
+  }
+}
